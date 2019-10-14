@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <% if flash[:alert] %>
+    <h6><%= flash[:alert].html_safe %></h6>
+    <% end %>
     <%= yield %>
   </body>
 </html>

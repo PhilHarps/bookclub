@@ -14,8 +14,14 @@ class BooksController < ApplicationController
   end
 
   def create
-    Book.create(book_params)
-    redirect_to root_path
+    book = Book.new(book_params)
+    if book.save
+      flash[:alert] = "Your book has been saved"
+      redirect_to root_path
+    else
+      flash[:alert] = book.errors.full_messages.join('<br>')
+      redirect_to new_book_path
+    end
   end
 
   def edit
